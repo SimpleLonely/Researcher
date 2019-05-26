@@ -43,7 +43,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2"
         tools:listitem="@layout/fragment_star"
-        tools:context=".StarFragment">
+        tools:context=".Fragment.StarFragment">
 
 
     </android.support.v7.widget.RecyclerView>
@@ -57,7 +57,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list"
-    android:name="com.alljedi.bottomnavigationapplication.StarFragment"
+    android:name="com.alljedi.bottomnavigationapplication.Fragment.StarFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutManager="LinearLayoutManager"

@@ -1,4 +1,4 @@
-package com.alljedi.bottomnavigationapplication;
+package com.alljedi.bottomnavigationapplication.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,19 +11,16 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.alljedi.bottomnavigationapplication.R;
 
 import java.util.ArrayList;
 
-public class FollowFragment extends Fragment {
-
+public class MyFragment extends Fragment {
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-    public  ArrayList<String> urls=new ArrayList<String>();
+    public ArrayList<String> urls=new ArrayList<String>();
     public  ArrayList<String> txts=new ArrayList<String>();
     private GridView gridView;
 
@@ -31,7 +28,7 @@ public class FollowFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public FollowFragment() {
+    public MyFragment() {
         urls.add("http://47.100.107.158:8080/static/marker_radar_g.png");
         urls.add("http://47.100.107.158:8080/static/marker_radar_r.png");
         txts.add("marker_radar_g.png");
@@ -40,8 +37,8 @@ public class FollowFragment extends Fragment {
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static FollowFragment newInstance(int columnCount) {
-        FollowFragment fragment = new FollowFragment();
+    public static MyFragment newInstance(int columnCount) {
+        MyFragment fragment = new MyFragment();
         return fragment;
     }
 
@@ -53,7 +50,7 @@ public class FollowFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_follow, container, false);
+        View view = inflater.inflate(R.layout.fragment_my, container, false);
         gridView=view.findViewById(R.id.gridView);
         gridView.setAdapter(new GridAdapter(this.getContext()));
         // Set the adapter
@@ -120,5 +117,3 @@ public class FollowFragment extends Fragment {
         }
     }
 }
-
-

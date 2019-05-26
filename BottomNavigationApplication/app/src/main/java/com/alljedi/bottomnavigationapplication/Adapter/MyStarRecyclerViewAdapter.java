@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.alljedi.bottomnavigationapplication.R;
-import com.alljedi.bottomnavigationapplication.StarFragment.OnListFragmentInteractionListener;
+import com.alljedi.bottomnavigationapplication.Fragment.StarFragment.OnListFragmentInteractionListener;
 import com.alljedi.bottomnavigationapplication.dummy.StarItemContent.StarItem;
 
 import java.util.List;

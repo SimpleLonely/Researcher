@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.alljedi.bottomnavigationapplication.R;
-import com.alljedi.bottomnavigationapplication.TextFragment;
 import com.alljedi.bottomnavigationapplication.dummy.DummyContent.DummyItem;
 
 import java.util.List;
@@ -28,16 +27,17 @@ public class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.VH>{
         }
     }
 
-    private List<String> mDatas;
-    public NormalAdapter(List<String> data) {
-        this.mDatas = data;
+    private List<String> titlelist,summarylist;
+    public NormalAdapter(List<String> titlelist,List<String> summarylist) {
+        this.titlelist = titlelist;
+        this.summarylist=summarylist;
     }
 
     //③ 在Adapter中实现3个方法
     @Override
     public void onBindViewHolder(VH holder, int position) {
-        holder.title.setText(mDatas.get(position));
-        holder.content.setText(mDatas.get(position));
+        holder.title.setText(titlelist.get(position));
+        holder.content.setText("   "+summarylist.get(position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +48,7 @@ public class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.VH>{
 
     @Override
     public int getItemCount() {
-        return mDatas.size();
+        return summarylist.size();
     }
 
     @Override

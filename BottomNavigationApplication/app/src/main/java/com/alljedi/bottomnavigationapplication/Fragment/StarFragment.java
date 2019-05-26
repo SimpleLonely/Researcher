@@ -1,4 +1,4 @@
-package com.alljedi.bottomnavigationapplication;
+package com.alljedi.bottomnavigationapplication.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alljedi.bottomnavigationapplication.Adapter.MyStarRecyclerViewAdapter;
+import com.alljedi.bottomnavigationapplication.R;
 import com.alljedi.bottomnavigationapplication.dummy.StarItemContent;
 import com.alljedi.bottomnavigationapplication.dummy.StarItemContent.StarItem;
 
