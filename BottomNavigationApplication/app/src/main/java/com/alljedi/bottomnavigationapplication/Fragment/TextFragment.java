@@ -1,5 +1,6 @@
 package com.alljedi.bottomnavigationapplication.Fragment;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.alljedi.bottomnavigationapplication.Adapter.NormalAdapter;
 import com.alljedi.bottomnavigationapplication.R;
@@ -34,6 +36,8 @@ public class TextFragment extends Fragment {
     ArrayList<String> titlelist=new ArrayList<>();
     ArrayList<String> summarylist=new ArrayList<>();
     ArrayList<String> pubtimelist=new ArrayList<>();
+    ArrayList<String> authorlist=new ArrayList<>();
+    ArrayList<String> sourcelist=new ArrayList<>();
     private int flag=0;
     private static final String TAG ="TEST";
     private static final int UPDATE=1;
@@ -45,8 +49,7 @@ public class TextFragment extends Fragment {
             public void handleMessage(Message msg) {
                 switch (msg.what) {
                     case UPDATE:
-                        Log.e(TAG,"DRDR"+titlelist.toString()+summarylist.toString());
-                        recyclerView.setAdapter(new NormalAdapter(titlelist,summarylist));
+                        recyclerView.setAdapter(new NormalAdapter(titlelist,summarylist,pubtimelist,authorlist,sourcelist));
                         break;
                     default:
                         break;
@@ -62,7 +65,7 @@ public class TextFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_item_list, container, false);
         recyclerView=(RecyclerView)view.findViewById(R.id.list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
-//设置布局管理器
+        //设置布局管理器
         recyclerView.setLayoutManager(layoutManager);
 //设置为垂直布局，这也是默认的
         layoutManager.setOrientation(OrientationHelper. VERTICAL);
@@ -70,7 +73,7 @@ public class TextFragment extends Fragment {
         flag=0;
         getdata();
 
-        recyclerView.setAdapter(new NormalAdapter(titlelist,summarylist));
+        recyclerView.setAdapter(new NormalAdapter(titlelist,summarylist,pubtimelist,authorlist,sourcelist));
         //设置分隔线
         //recyclerView.addItemDecoration( new DividerGridItemDecoration(this ));
 //设置增加或删除条目的动画
@@ -98,8 +101,14 @@ public class TextFragment extends Fragment {
                         JSONObject obj=res.getJSONObject(i);
                         String title=obj.getString("title");
                         String summary=obj.getString("summary");
+                        String pubTime=obj.getString("pubTime");
+                        String author=obj.getString("author");
+                        String source=obj.getString("source");
                         titlelist.add(title);
                         summarylist.add(summary);
+                        pubtimelist.add(pubTime);
+                        authorlist.add(author);
+                        sourcelist.add(source);
                     }
                     flag=1;
                 }catch (Exception e){

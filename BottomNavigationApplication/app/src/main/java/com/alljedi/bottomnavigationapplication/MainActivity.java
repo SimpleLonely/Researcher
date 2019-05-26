@@ -1,9 +1,9 @@
 package com.alljedi.bottomnavigationapplication;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,10 +12,13 @@ import android.view.MenuItem;
 
 import com.alljedi.bottomnavigationapplication.Fragment.FavouriteFragment;
 import com.alljedi.bottomnavigationapplication.Fragment.FollowFragment;
+import com.alljedi.bottomnavigationapplication.Fragment.JournalFragment;
 import com.alljedi.bottomnavigationapplication.Fragment.ProfileFragment;
 import com.alljedi.bottomnavigationapplication.Fragment.StarFragment;
 import com.alljedi.bottomnavigationapplication.Fragment.TextFragment;
 import com.alljedi.bottomnavigationapplication.View.CustomViewPager;
+
+import java.lang.reflect.Field;
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
     private CustomViewPager viewPager;
@@ -29,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     BottomNavigationView navView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+            = new BottomNavigationView.OnNavigationItemSelectedListener(){
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -43,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         viewPager = (CustomViewPager) findViewById(R.id.view_pager);
         viewPager.setScanScroll(false);
@@ -67,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 }
                 return null;
             }
-
             @Override
             public int getCount() {
                 return 5;
@@ -90,4 +91,5 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void onPageScrollStateChanged(int state) {
 
     }
+
 }
