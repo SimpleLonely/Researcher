@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.view.MenuItem;
 
+import com.alljedi.bottomnavigationapplication.dummy.DummyContent;
+
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
     private ViewPager viewPager;
 

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.alljedi.bottomnavigationapplication.FollowFragment.OnListFragmentInteractionListener;
 import com.alljedi.bottomnavigationapplication.R;
+import com.alljedi.bottomnavigationapplication.TextFragment;
 import com.alljedi.bottomnavigationapplication.dummy.DummyContent.DummyItem;
 
 import java.util.List;
@@ -22,8 +23,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     private final List<DummyItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyItemRecyclerViewAdapter(List<DummyItem> items,
-                                     OnListFragmentInteractionListener listener) {
+    public MyItemRecyclerViewAdapter(List<DummyItem> items,OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
