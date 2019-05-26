@@ -23,5 +23,9 @@
         android:icon="@drawable/ic_notifications_black_24dp"
         android:orderInCategory="3"
         android:title="@string/title_stars" />
-
+    <item
+        android:id="@+id/navigation_follow"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:orderInCategory="4"
+        android:title="@string/title_follows" />
 </menu>

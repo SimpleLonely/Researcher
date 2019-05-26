@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private ProfileFragment profileFragment = new ProfileFragment();
     private FavouriteFragment favouriteFragment = new FavouriteFragment();
     private StarFragment starFragment = new StarFragment();
+    private FollowFragment followFragment = new FollowFragment();
 
     BottomNavigationView navView;
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         viewPager = (CustomViewPager) findViewById(R.id.view_pager);
         viewPager.setScanScroll(false);
@@ -55,13 +57,15 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                         return favouriteFragment;
                     case 3:
                         return starFragment;
+                    case 4:
+                        return followFragment;
                 }
                 return null;
             }
 
             @Override
             public int getCount() {
-                return 4;
+                return 5;
             }
         });
     }

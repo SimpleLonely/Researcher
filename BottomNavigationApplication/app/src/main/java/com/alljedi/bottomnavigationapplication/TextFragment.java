@@ -1,11 +1,9 @@
 package com.alljedi.bottomnavigationapplication;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.PagerSnapHelper;
@@ -14,15 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.alljedi.bottomnavigationapplication.Adapter.MyItemRecyclerViewAdapter;
 import com.alljedi.bottomnavigationapplication.Adapter.NormalAdapter;
-import com.alljedi.bottomnavigationapplication.dummy.DummyContent;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 
 public class TextFragment extends Fragment {
