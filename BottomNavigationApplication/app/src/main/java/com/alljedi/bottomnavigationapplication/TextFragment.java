@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,7 @@ public class TextFragment extends Fragment {
         //recyclerView.addItemDecoration( new DividerGridItemDecoration(this ));
 //设置增加或删除条目的动画
         recyclerView.setItemAnimator( new DefaultItemAnimator());
+        new PagerSnapHelper().attachToRecyclerView(recyclerView);
         return view;
     }
 }
