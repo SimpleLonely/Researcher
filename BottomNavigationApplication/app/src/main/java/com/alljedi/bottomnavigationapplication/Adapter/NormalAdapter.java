@@ -20,9 +20,11 @@ public class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.VH>{
     //② 创建ViewHolder
     public static class VH extends RecyclerView.ViewHolder{
         public final TextView title;
+        public final TextView content;
         public VH(View v) {
             super(v);
             title = (TextView) v.findViewById(R.id.tv_title);
+            content=(TextView) v.findViewById(R.id.tv_context);
         }
     }
 
@@ -35,6 +37,7 @@ public class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.VH>{
     @Override
     public void onBindViewHolder(VH holder, int position) {
         holder.title.setText(mDatas.get(position));
+        holder.content.setText(mDatas.get(position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

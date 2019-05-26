@@ -31,8 +31,8 @@ public class TextFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        data.add("234");
-        data.add("234324");
+        data.add("234234233242342");
+        data.add("11111111111111111111");
         View view = inflater.inflate(R.layout.fragment_item_list, container, false);
         recyclerView=(RecyclerView)view.findViewById(R.id.list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
