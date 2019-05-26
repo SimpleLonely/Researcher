@@ -87,7 +87,7 @@ public class JournalFragment extends Fragment {
         recyclerView.setItemAnimator( new DefaultItemAnimator());
         return view;
     }
-    
+
     // @Override
     // public void onAttach(Context context) {
     //     super.onAttach(context);
