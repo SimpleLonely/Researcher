@@ -1,4 +1,4 @@
-package com.alljedi.bottomnavigationapplication.dummy;
+package com.alljedi.bottomnavigationapplication.Content;
 
 import java.util.ArrayList;
 import java.util.HashMap;

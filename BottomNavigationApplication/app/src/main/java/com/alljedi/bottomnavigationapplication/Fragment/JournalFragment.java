@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 
 import com.alljedi.bottomnavigationapplication.Adapter.JournalAdapter;
 import com.alljedi.bottomnavigationapplication.R;
-import com.alljedi.bottomnavigationapplication.dummy.DummyContent.DummyItem;
 
 import java.util.ArrayList;
 
@@ -116,7 +115,6 @@ public class JournalFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
     }
     public void sendMessage(int id){
         if (mHandler != null) {

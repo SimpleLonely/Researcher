@@ -1,6 +1,5 @@
 package com.alljedi.bottomnavigationapplication;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -14,11 +13,10 @@ import com.alljedi.bottomnavigationapplication.Fragment.FavouriteFragment;
 import com.alljedi.bottomnavigationapplication.Fragment.FollowFragment;
 import com.alljedi.bottomnavigationapplication.Fragment.JournalFragment;
 import com.alljedi.bottomnavigationapplication.Fragment.ProfileFragment;
+import com.alljedi.bottomnavigationapplication.Fragment.RecommendCardFragment;
 import com.alljedi.bottomnavigationapplication.Fragment.StarFragment;
 import com.alljedi.bottomnavigationapplication.Fragment.TextFragment;
 import com.alljedi.bottomnavigationapplication.View.CustomViewPager;
-
-import java.lang.reflect.Field;
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
     private CustomViewPager viewPager;

@@ -1,4 +1,4 @@
-package com.alljedi.bottomnavigationapplication;
+package com.alljedi.bottomnavigationapplication.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,8 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alljedi.bottomnavigationapplication.Adapter.MyRecommendCardRecyclerViewAdapter;
-import com.alljedi.bottomnavigationapplication.dummy.RecommendCardContent;
-import com.alljedi.bottomnavigationapplication.dummy.RecommendCardContent.RecommendCardItem;
+import com.alljedi.bottomnavigationapplication.Content.RecommendCardContent;
+import com.alljedi.bottomnavigationapplication.Content.RecommendCardContent.RecommendCardItem;
+import com.alljedi.bottomnavigationapplication.R;
 
 /**
  * A fragment representing a list of Items.

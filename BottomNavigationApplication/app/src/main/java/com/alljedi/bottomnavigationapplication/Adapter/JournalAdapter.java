@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.alljedi.bottomnavigationapplication.R;
-import com.alljedi.bottomnavigationapplication.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 

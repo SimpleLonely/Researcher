@@ -14,10 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alljedi.bottomnavigationapplication.Adapter.MyStarRecyclerViewAdapter;
-import com.alljedi.bottomnavigationapplication.Adapter.NormalAdapter;
 import com.alljedi.bottomnavigationapplication.R;
-import com.alljedi.bottomnavigationapplication.dummy.StarItemContent;
-import com.alljedi.bottomnavigationapplication.dummy.StarItemContent.StarItem;
+import com.alljedi.bottomnavigationapplication.Content.StarItemContent.StarItem;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

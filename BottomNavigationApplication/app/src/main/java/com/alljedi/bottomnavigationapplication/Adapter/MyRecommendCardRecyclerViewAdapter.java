@@ -1,6 +1,5 @@
 package com.alljedi.bottomnavigationapplication.Adapter;
 
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alljedi.bottomnavigationapplication.R;
-import com.alljedi.bottomnavigationapplication.RecommendCardFragment.OnListFragmentInteractionListener;
-import com.alljedi.bottomnavigationapplication.dummy.RecommendCardContent.RecommendCardItem;
+import com.alljedi.bottomnavigationapplication.Fragment.RecommendCardFragment.OnListFragmentInteractionListener;
+import com.alljedi.bottomnavigationapplication.Content.RecommendCardContent.RecommendCardItem;
 
 import java.util.List;
 
