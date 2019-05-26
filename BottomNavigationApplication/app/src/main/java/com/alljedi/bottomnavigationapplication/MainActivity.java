@@ -22,8 +22,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     BottomNavigationView navView;
 
-
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
