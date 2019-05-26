@@ -9,10 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.view.MenuItem;
 
+import com.alljedi.bottomnavigationapplication.View.CustomViewPager;
 import com.alljedi.bottomnavigationapplication.dummy.DummyContent;
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
-    private ViewPager viewPager;
+    private CustomViewPager viewPager;
 
     private TextFragment textFragment = new TextFragment();
     private ProfileFragment profileFragment = new ProfileFragment();
@@ -38,11 +39,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        viewPager = (CustomViewPager) findViewById(R.id.view_pager);
+        viewPager.setScanScroll(false);
         viewPager.addOnPageChangeListener(this);
         navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        viewPager.
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
