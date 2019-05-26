@@ -8,9 +8,9 @@ import java.util.Map;
 //TODO: get data
 public class JournalContent {
 
-        public static final List<StarItem> ITEMS = new ArrayList<StarItem>();
+        public static final List<JournalItem> ITEMS = new ArrayList<JournalItem>();
 
-        public static final Map<String, StarItem> ITEM_MAP = new HashMap<String, StarItem>();
+        public static final Map<String, JournalItem> ITEM_MAP = new HashMap<String, JournalItem>();
 
         private static final int COUNT = 25;
 
@@ -20,13 +20,13 @@ public class JournalContent {
             }
         }
 
-        private static void addItem(StarItem item) {
+        private static void addItem(JournalItem item) {
             ITEMS.add(item);
             ITEM_MAP.put(item.id, item);
         }
 
-        private static StarItem createJournalItem(int position) {
-            return new StarItem(String.valueOf(position), "Item " + position, makeDetails(position));
+        private static JournalItem createJournalItem(int position) {
+            return new JournalItem(String.valueOf(position), "Item " + position, makeDetails(position));
         }
 
         private static String makeDetails(int position) {
