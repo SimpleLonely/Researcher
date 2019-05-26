@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private TextFragment textFragment = new TextFragment();
     private ProfileFragment profileFragment = new ProfileFragment();
     private FavouriteFragment favouriteFragment = new FavouriteFragment();
+    private StarFragment starFragment = new StarFragment();
 
     BottomNavigationView navView;
 
@@ -54,13 +55,15 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                         return profileFragment;
                     case 2:
                         return favouriteFragment;
+                    case 3:
+                        return starFragment;
                 }
                 return null;
             }
 
             @Override
             public int getCount() {
-                return 3;
+                return 4;
             }
         });
     }
