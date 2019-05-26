@@ -17,6 +17,7 @@ import com.alljedi.bottomnavigationapplication.Fragment.RecommendCardFragment;
 import com.alljedi.bottomnavigationapplication.Fragment.StarFragment;
 import com.alljedi.bottomnavigationapplication.Fragment.TextFragment;
 import com.alljedi.bottomnavigationapplication.View.CustomViewPager;
+import com.beardedhen.androidbootstrap.TypefaceProvider;
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
     private CustomViewPager viewPager;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TypefaceProvider.registerDefaultIconSets();
         setContentView(R.layout.activity_main);
         viewPager = (CustomViewPager) findViewById(R.id.view_pager);
         viewPager.setScanScroll(false);
