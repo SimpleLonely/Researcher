@@ -21,7 +21,7 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.VH>{
         public final TextView title;
         public VH(View v) {
             super(v);
-            title = (TextView) v.findViewById(R.id.content);
+            title = (TextView) v.findViewById(R.id.title);
         }
     }
 

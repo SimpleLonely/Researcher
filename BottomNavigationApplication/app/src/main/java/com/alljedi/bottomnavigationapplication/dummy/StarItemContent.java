@@ -14,19 +14,10 @@ public class StarItemContent {
 
         private static final int COUNT = 25;
 
-        static {
-            for (int i = 1; i <= COUNT; i++) {
-                addItem(createDummyItem(i));
-            }
-        }
 
         private static void addItem(StarItem item) {
             ITEMS.add(item);
             ITEM_MAP.put(item.id, item);
-        }
-
-        private static StarItem createDummyItem(int position) {
-            return new StarItem(String.valueOf(position), "Item " + position, makeDetails(position));
         }
 
         private static String makeDetails(int position) {
@@ -43,18 +34,25 @@ public class StarItemContent {
          */
         public static class StarItem {
             public final String id;
-            public final String content;
-            public final String details;
+            public final String title;
+            public final String author;
+            public final String summary;
 
-            public StarItem(String id, String content, String details) {
+            public StarItem(String id, String title, String author, String summary) {
                 this.id = id;
-                this.content = content;
-                this.details = details;
+                this.title = title;
+                this.author = author;
+                this.summary = summary;
             }
 
             @Override
             public String toString() {
-                return content;
+                return "StarItem{" +
+                        "id='" + id + '\'' +
+                        ", title='" + title + '\'' +
+                        ", author='" + author + '\'' +
+                        ", summary='" + summary + '\'' +
+                        '}';
             }
         }
 

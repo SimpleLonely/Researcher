@@ -12,7 +12,7 @@
         android:layout_width="365dp"
         android:layout_height="46dp"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="-8dp"
         android:layout_marginEnd="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,14 +36,14 @@
         android:layout_width="364dp"
         android:layout_height="613dp"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="18dp"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2"
-        tools:listitem="@layout/fragment_star"
-        tools:context=".Fragment.StarFragment">
+        tools:context=".Fragment.StarFragment"
+        tools:listitem="@layout/fragment_star">
 
 
     </android.support.v7.widget.RecyclerView>

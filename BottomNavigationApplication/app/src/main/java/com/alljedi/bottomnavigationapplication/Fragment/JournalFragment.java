@@ -1,29 +1,20 @@
 package com.alljedi.bottomnavigationapplication.Fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.alljedi.bottomnavigationapplication.Adapter.JournalAdapter;
-import com.alljedi.bottomnavigationapplication.Adapter.MyJournalRecyclerViewAdapter;
-import com.alljedi.bottomnavigationapplication.Adapter.NormalAdapter;
 import com.alljedi.bottomnavigationapplication.R;
-import com.alljedi.bottomnavigationapplication.dummy.DummyContent;
 import com.alljedi.bottomnavigationapplication.dummy.DummyContent.DummyItem;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -93,7 +84,6 @@ public class JournalFragment extends Fragment {
 //设置Adapter
         flag=0;
         getdata();
-        recyclerView.setAdapter(new JournalAdapter(catelist));
         recyclerView.setItemAnimator( new DefaultItemAnimator());
         return view;
     }
