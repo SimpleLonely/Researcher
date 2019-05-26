@@ -1,30 +1,30 @@
 package com.alljedi.bottomnavigationapplication.Adapter;
 
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alljedi.bottomnavigationapplication.R;
-import com.alljedi.bottomnavigationapplication.Fragment.StarFragment.OnListFragmentInteractionListener;
-import com.alljedi.bottomnavigationapplication.dummy.StarItemContent.StarItem;
+import com.alljedi.bottomnavigationapplication.RecommendCardFragment.OnListFragmentInteractionListener;
+import com.alljedi.bottomnavigationapplication.dummy.RecommendCardContent.RecommendCardItem;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link StarItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link RecommendCardItem} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyStarRecyclerViewAdapter extends RecyclerView.Adapter<MyStarRecyclerViewAdapter.ViewHolder> {
+public class MyRecommendCardRecyclerViewAdapter extends RecyclerView.Adapter<MyRecommendCardRecyclerViewAdapter.ViewHolder> {
 
-    private final List<StarItem> mValues;
+    private final List<RecommendCardItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyStarRecyclerViewAdapter(List<StarItem> items,
-                                     OnListFragmentInteractionListener listener) {
+    public MyRecommendCardRecyclerViewAdapter(List<RecommendCardItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -32,16 +32,18 @@ public class MyStarRecyclerViewAdapter extends RecyclerView.Adapter<MyStarRecycl
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_star, parent, false);
+                .inflate(R.layout.fragment_recommandcard, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mTitleView.setText(mValues.get(position).title);
-        holder.mAuthorView.setText(mValues.get(position).author);
-        holder.mSummaryView.setText(mValues.get(position).summary);
+        //holder.mOriginImage.setImageBitmap();
+        holder.mOriginText.setText(mValues.get(position).originText);
+        holder.mTitle.setText(mValues.get(position).title);
+        holder.mAuthor.setText(mValues.get(position).author);
+        //holder.mPhoto.setImageBitmap();
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,26 +63,32 @@ public class MyStarRecyclerViewAdapter extends RecyclerView.Adapter<MyStarRecycl
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mTitleView;
-        public final TextView mAuthorView;
-        public final TextView mSummaryView;
-        public StarItem mItem;
+        public final ImageView mOriginImage;
+        public final TextView mOriginText;
+        public final TextView mTitle;
+        public final TextView mAuthor;
+        public final ImageView mPhoto;
+        public RecommendCardItem mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mTitleView = (TextView) view.findViewById(R.id.title);
-            mAuthorView = (TextView) view.findViewById(R.id.author);
-            mSummaryView = (TextView) view.findViewById(R.id.summary);
+            mOriginImage=(ImageView) view.findViewById(R.id.originImage);
+            mOriginText = (TextView) view.findViewById(R.id.originText);
+            mTitle = (TextView) view.findViewById(R.id.title);
+            mAuthor = (TextView) view.findViewById(R.id.author);
+            mPhoto = (ImageView) view.findViewById(R.id.photo);
         }
 
         @Override
         public String toString() {
             return "ViewHolder{" +
                     "mView=" + mView +
-                    ", mTitleView=" + mTitleView +
-                    ", mAuthorView=" + mAuthorView +
-                    ", mSummaryView=" + mSummaryView +
+                    ", mOriginImage=" + mOriginImage +
+                    ", mOriginText=" + mOriginText +
+                    ", mTitle=" + mTitle +
+                    ", mAuthor=" + mAuthor +
+                    ", mPhoto=" + mPhoto +
                     ", mItem=" + mItem +
                     ", itemView=" + itemView +
                     '}';

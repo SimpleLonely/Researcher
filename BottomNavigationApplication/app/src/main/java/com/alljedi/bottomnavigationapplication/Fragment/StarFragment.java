@@ -2,18 +2,34 @@ package com.alljedi.bottomnavigationapplication.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.alljedi.bottomnavigationapplication.Adapter.MyStarRecyclerViewAdapter;
+import com.alljedi.bottomnavigationapplication.Adapter.NormalAdapter;
 import com.alljedi.bottomnavigationapplication.R;
 import com.alljedi.bottomnavigationapplication.dummy.StarItemContent;
 import com.alljedi.bottomnavigationapplication.dummy.StarItemContent.StarItem;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+import static android.support.constraint.Constraints.TAG;
 
 /**
  * A fragment representing a list of Items.
@@ -28,7 +44,12 @@ public class StarFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
-
+    private String srcUrl = "http://47.103.9.254:3180/paperList/getTargetPaperList";
+    private static final int UPDATE=1;
+    private ArrayList<StarItem> starItemArrayList = new ArrayList<>();
+    private RecyclerView recyclerView ;
+    int flag = 0;
+    private Handler mHandler;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -50,6 +71,19 @@ public class StarFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case UPDATE:
+                        Log.e(TAG,"TEST"+starItemArrayList.toString());
+                        recyclerView.setAdapter(new MyStarRecyclerViewAdapter((List<StarItem>)starItemArrayList,mListener));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
@@ -62,19 +96,57 @@ public class StarFragment extends Fragment {
         // Set the adapter
         if (listView instanceof RecyclerView) {
             Context context = listView.getContext();
-            RecyclerView recyclerView = (RecyclerView) listView;
+            recyclerView = (RecyclerView) listView;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyStarRecyclerViewAdapter(StarItemContent.ITEMS, mListener));
+            flag = 0;
+            getData();
+            recyclerView.setAdapter(new MyStarRecyclerViewAdapter(starItemArrayList, mListener));
         }
         return view;
     }
 
-
-
+    public void getData(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder().url(srcUrl+"?username=test").build();
+                try {
+                    Response response = client.newCall(request).execute();//发送请求
+                    String data = response.body().string();
+                    if (data == null){
+                        //TODO:
+                    }
+                    JSONArray res=new JSONArray(data);
+                    for(int i=0;i<res.length();i++){
+                        JSONObject obj=res.getJSONObject(i);
+                        starItemArrayList.add(new StarItem(obj.getString("id"),obj.getString("title"),obj.getString("author"),obj.getString("summary")));
+                    }
+                    flag=1;
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        while(flag==0) {
+            try{
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        if(flag==1) sendMessage(UPDATE);
+    }
+    public void sendMessage(int id){
+        if (mHandler != null) {
+            Message message = Message.obtain(mHandler, id);
+            mHandler.sendMessage(message);
+        }
+    }
 
     @Override
     public void onDetach() {

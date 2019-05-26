@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private StarFragment starFragment = new StarFragment();
     private FollowFragment followFragment = new FollowFragment();
     private JournalFragment journalFragment = new JournalFragment();
+    private RecommendCardFragment recommendCardFragment = new RecommendCardFragment();
     BottomNavigationView navView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     case 1:
                         return profileFragment;
                     case 2:
-                        return journalFragment;
+                        return recommendCardFragment;
                     case 3:
                         return starFragment;
                     case 4:
