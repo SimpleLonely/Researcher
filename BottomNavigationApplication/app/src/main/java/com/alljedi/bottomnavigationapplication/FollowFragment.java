@@ -9,10 +9,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.alljedi.bottomnavigationapplication.Adapter.MyItemRecyclerViewAdapter;
 import com.alljedi.bottomnavigationapplication.dummy.DummyContent;
 import com.alljedi.bottomnavigationapplication.dummy.DummyContent.DummyItem;
+
+import org.xutils.x;
+import org.xutils.x;
+
+import java.util.ArrayList;
 
 /**
  * A fragment representing a list of Items.
@@ -27,12 +35,18 @@ public class FollowFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+    public  ArrayList<String> urls=new ArrayList<String>();
+    public  ArrayList<String> txts=new ArrayList<String>();
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
     public FollowFragment() {
+        urls.add("http://47.100.107.158:8080/static/marker_radar_g.png");
+        urls.add("http://47.100.107.158:8080/static/marker_radar_r.png");
+        txts.add("marker_radar_g.png");
+        txts.add("marker_radar_r.png");
     }
 
     // TODO: Customize parameter initialization
@@ -105,4 +119,55 @@ public class FollowFragment extends Fragment {
         // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
     }
+    public class GridAdapter extends BaseAdapter {
+
+        private Context mContext;
+
+
+        public GridAdapter(Context context) {
+            this.mContext = context;
+        }
+
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder viewHolder = null;
+
+            if (convertView == null) {
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.item_grid, parent, false);
+                viewHolder = new ViewHolder();
+                viewHolder.itemImg = (ImageView) convertView.findViewById(R.id.iv_head);
+                viewHolder.itemtxt = (TextView) convertView.findViewById(R.id.iv_tail);
+                x.image().bind(viewHolder.itemImg,urls.get(position));
+                viewHolder.itemtxt.setText(txts.get(position));
+                convertView.setTag(viewHolder);
+            } else {
+                viewHolder = (ViewHolder) convertView.getTag();
+            }
+            return convertView;
+        }
+
+
+        class ViewHolder {
+            ImageView itemImg;
+            TextView itemtxt;
+        }
+    }
 }
+
+
