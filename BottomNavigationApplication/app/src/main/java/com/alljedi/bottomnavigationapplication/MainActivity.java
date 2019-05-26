@@ -8,15 +8,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.view.MenuItem;
-import android.view.Window;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
     private ViewPager viewPager;
 
-    private HomeFragment homeFragment = new HomeFragment();
+    private TextFragment textFragment = new TextFragment();
     private ProfileFragment profileFragment = new ProfileFragment();
-    private OtherFragment otherFragment = new OtherFragment();
+    private FavouriteFragment favouriteFragment = new FavouriteFragment();
 
     BottomNavigationView navView;
 
@@ -47,11 +45,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        return homeFragment;
+                        return textFragment;
                     case 1:
                         return profileFragment;
                     case 2:
-                        return otherFragment;
+                        return favouriteFragment;
                 }
                 return null;
             }

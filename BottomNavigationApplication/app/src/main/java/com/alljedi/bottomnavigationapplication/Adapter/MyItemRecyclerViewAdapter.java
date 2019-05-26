@@ -1,4 +1,4 @@
-package com.alljedi.bottomnavigationapplication;
+package com.alljedi.bottomnavigationapplication.Adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,7 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.alljedi.bottomnavigationapplication.ItemFragment.OnListFragmentInteractionListener;
+import com.alljedi.bottomnavigationapplication.FollowFragment.OnListFragmentInteractionListener;
+import com.alljedi.bottomnavigationapplication.R;
 import com.alljedi.bottomnavigationapplication.dummy.DummyContent.DummyItem;
 
 import java.util.List;
