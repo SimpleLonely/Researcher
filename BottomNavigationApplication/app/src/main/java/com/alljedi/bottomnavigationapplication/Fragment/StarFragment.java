@@ -1,5 +1,6 @@
 package com.alljedi.bottomnavigationapplication.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -42,12 +43,12 @@ public class StarFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
-    private String srcUrl = "http://47.103.9.254:3180/paperList/getTargetPaperList";
+    private String srcUrl = "http://47.103.9.254:3180/paper/getTopTen";
     private static final int UPDATE=1;
     private ArrayList<StarItem> starItemArrayList = new ArrayList<>();
     private RecyclerView recyclerView ;
     int flag = 0;
-    private Handler mHandler;
+    static private Handler mHandler;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -65,6 +66,7 @@ public class StarFragment extends Fragment {
         return fragment;
     }
 
+    @SuppressLint("HandlerLeak")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

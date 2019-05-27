@@ -2,6 +2,8 @@ package com.alljedi.bottomnavigationapplication.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +16,15 @@ import com.alljedi.bottomnavigationapplication.Adapter.MyRecommendCardRecyclerVi
 import com.alljedi.bottomnavigationapplication.Content.RecommendCardContent;
 import com.alljedi.bottomnavigationapplication.Content.RecommendCardContent.RecommendCardItem;
 import com.alljedi.bottomnavigationapplication.R;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * A fragment representing a list of Items.
@@ -28,7 +39,12 @@ public class RecommendCardFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+    int flag = 0;
+    String srcUrl = "";
+    private static final int UPDATE=1;
+    private Handler mHandler;
 
+    private ArrayList<RecommendCardItem> recommendCardItemArrayList = new ArrayList<>();
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -74,17 +90,51 @@ public class RecommendCardFragment extends Fragment {
         return view;
     }
 
-//
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnListFragmentInteractionListener) {
-//            mListener = (OnListFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnListFragmentInteractionListener");
-//        }
-//    }
+
+    public void getData(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                recommendCardItemArrayList.clear();
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder().url(srcUrl+"?username=test").build();
+                try {
+                    Response response = client.newCall(request).execute();//发送请求
+                    String data = response.body().string();
+                    if (data == null){
+                        //TODO:
+                    }
+                    JSONArray res=new JSONArray(data);
+                    for(int i=0;i<res.length();i++){
+                        JSONObject obj=res.getJSONObject(i);
+                        String pictureURL = "";
+                        recommendCardItemArrayList.add(new RecommendCardContent.RecommendCardItem(obj.getInt("id"), pictureURL, obj.getString("source"), obj.getString("title"), obj.getString("author"), obj.getString("summary")));
+                    }
+                    flag=1;sendMessage(UPDATE);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+    public void sendMessage(int id){
+        if (mHandler != null) {
+            Message message = Message.obtain(mHandler, id);
+            mHandler.sendMessage(message);
+        }
+    }
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnListFragmentInteractionListener) {
+            mListener = (OnListFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnListFragmentInteractionListener");
+        }
+    }
 
     @Override
     public void onDetach() {

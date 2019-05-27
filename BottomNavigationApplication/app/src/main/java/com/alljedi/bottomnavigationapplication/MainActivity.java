@@ -1,14 +1,16 @@
 package com.alljedi.bottomnavigationapplication;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.annotation.NonNull;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.alljedi.bottomnavigationapplication.Content.RecommendCardContent;
 import com.alljedi.bottomnavigationapplication.Fragment.FavouriteFragment;
 import com.alljedi.bottomnavigationapplication.Fragment.FollowFragment;
 import com.alljedi.bottomnavigationapplication.Fragment.JournalFragment;
@@ -19,20 +21,20 @@ import com.alljedi.bottomnavigationapplication.Fragment.TextFragment;
 import com.alljedi.bottomnavigationapplication.View.CustomViewPager;
 import com.beardedhen.androidbootstrap.TypefaceProvider;
 
-public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
+public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, RecommendCardFragment.OnListFragmentInteractionListener {
     private CustomViewPager viewPager;
 
-    private TextFragment textFragment;
-    private ProfileFragment profileFragment;
+    private TextFragment textFragment = new TextFragment();
+    private ProfileFragment profileFragment = new ProfileFragment();
     private FavouriteFragment favouriteFragment;
-    private StarFragment starFragment;
-    private FollowFragment followFragment;
+    private StarFragment starFragment = new StarFragment();
+    private FollowFragment followFragment = new FollowFragment();
     private JournalFragment journalFragment;
-    private RecommendCardFragment recommendCardFragment;
+    private RecommendCardFragment recommendCardFragment = new RecommendCardFragment();
     BottomNavigationView navView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener(){
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -58,23 +60,23 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        textFragment = new TextFragment();
+
                         return textFragment;
                     case 1:
-                        profileFragment = new ProfileFragment();
-                        return profileFragment;
+                        return followFragment;
                     case 2:
-                        recommendCardFragment = new RecommendCardFragment();
+                        //recommendCardFragment ;
                         return recommendCardFragment;
                     case 3:
-                        starFragment = new StarFragment();
+                        //starFragment = new StarFragment();
                         return starFragment;
                     case 4:
-                        followFragment = new FollowFragment();
-                        return followFragment;
+
+                        return profileFragment;
                 }
                 return null;
             }
+
             @Override
             public int getCount() {
                 return 5;
@@ -97,5 +99,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void onPageScrollStateChanged(int state) {
 
     }
+
+
+    @Override
+    public void onListFragmentInteraction(RecommendCardContent.RecommendCardItem item){
+
+    }
+
 
 }

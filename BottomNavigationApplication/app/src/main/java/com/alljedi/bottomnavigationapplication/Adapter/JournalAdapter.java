@@ -38,7 +38,7 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.VH>{
     @Override
     public void onBindViewHolder(VH holder, int position) {
         holder.title.setText(titlelist.get(position));
-        holder.imageView.setImageResource(map.get(titlelist.get(position)));
+        //holder.imageView.setImageResource(map.get(titlelist.get(position)));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

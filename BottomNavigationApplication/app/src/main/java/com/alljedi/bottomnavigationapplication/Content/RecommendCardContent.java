@@ -13,12 +13,6 @@ public class RecommendCardContent {
 
     private static final int COUNT = 25;
 
-
-    private static void addItem(RecommendCardItem item) {
-        ITEMS.add(item);
-        ITEM_MAP.put(item.id, item);
-    }
-
     private static String makeDetails(int position) {
         StringBuilder builder = new StringBuilder();
         builder.append("Details about Item: ").append(position);
@@ -32,14 +26,14 @@ public class RecommendCardContent {
      * A RecommendCard item representing a piece of content.
      */
     public static class RecommendCardItem {
-        public final String id;
+        public final int id;
         public final String originImage;
         public final String originText;
         public final String title;
         public final String author;
         public final String photo;
 
-        public RecommendCardItem(String id, String originImage, String originText, String title, String author, String photo) {
+        public RecommendCardItem(int id, String originImage, String originText, String title, String author, String photo) {
             this.id = id;
             this.originImage = originImage;
             this.originText = originText;

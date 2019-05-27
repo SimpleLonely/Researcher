@@ -12,12 +12,17 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         Bundle bundle=getIntent().getExtras();
-        int id=bundle.getInt("photo");
-        String message=bundle.getString("message");
-        //ImageView Iv=(ImageView) findViewById(R.id.Iv);
-        //Iv.setImageResource(id);
-        //TextView tv=(TextView) findViewById(R.id.tv_message);
-        //tv.setText(message);
+        //int id=bundle.getInt("id");
+        String title = bundle.getString("title");
+        String author = bundle.getString("author");
+        String summary = bundle.getString("summary");
+
+        TextView titleText=(TextView) findViewById(R.id.title);
+        titleText.setText(title);
+        TextView authorText=(TextView) findViewById(R.id.author);
+        authorText.setText(author);
+        TextView summaryText=(TextView) findViewById(R.id.summary);
+        summaryText.setText(summary);
 
     }
 }
