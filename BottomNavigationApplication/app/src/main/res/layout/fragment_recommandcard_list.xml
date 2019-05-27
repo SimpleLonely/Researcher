@@ -43,6 +43,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider4"
-        tools:context=".RecommendCardFragment"
+        tools:context=".Fragment.RecommendCardFragment"
         tools:listitem="@layout/fragment_recommandcard" />
 </android.support.constraint.ConstraintLayout>

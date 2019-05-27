@@ -1,11 +1,14 @@
 package com.alljedi.bottomnavigationapplication.Fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
@@ -15,9 +18,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.alljedi.bottomnavigationapplication.Adapter.NormalAdapter;
+import com.alljedi.bottomnavigationapplication.DetailActivity;
+import com.alljedi.bottomnavigationapplication.MainActivity;
 import com.alljedi.bottomnavigationapplication.R;
 
 import org.json.JSONArray;
@@ -42,6 +48,8 @@ public class TextFragment extends Fragment {
     private static final String TAG ="TEST";
     private static final int UPDATE=1;
     private Handler mHandler;
+    private NormalAdapter adapter;
+    @SuppressLint("HandlerLeak")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         mHandler = new Handler(){
@@ -49,7 +57,22 @@ public class TextFragment extends Fragment {
             public void handleMessage(Message msg) {
                 switch (msg.what) {
                     case UPDATE:
-                        recyclerView.setAdapter(new NormalAdapter(titlelist,summarylist,pubtimelist,authorlist,sourcelist));
+                        adapter=new NormalAdapter(titlelist,summarylist,pubtimelist,authorlist,sourcelist);
+                        recyclerView.setAdapter(adapter);
+                        adapter.setOnItemClickListener(new NormalAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int postion) {
+                                Bundle bundle = new Bundle();
+                                bundle.putString("title", titlelist.get(postion));
+                                bundle.putString("summary",summarylist.get(postion));
+                                bundle.putString("author", authorlist.get(postion));
+                                bundle.putString("source", sourcelist.get(postion));
+                                Intent intent = new Intent();
+                                intent.putExtras(bundle);
+                                intent.setClass(TextFragment.super.getActivity(), DetailActivity.class);
+                                startActivity(intent);
+                            }
+                        });
                         break;
                     default:
                         break;

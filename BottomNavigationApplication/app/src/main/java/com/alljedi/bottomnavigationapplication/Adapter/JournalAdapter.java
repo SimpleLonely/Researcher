@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alljedi.bottomnavigationapplication.R;
-import com.alljedi.bottomnavigationapplication.dummy.DummyContent.DummyItem;
 
 import java.util.HashMap;
 import java.util.List;
