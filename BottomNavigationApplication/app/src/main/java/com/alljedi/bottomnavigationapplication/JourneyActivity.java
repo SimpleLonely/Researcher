@@ -94,7 +94,6 @@ public class JourneyActivity extends AppCompatActivity {
                         JSONObject obj=res.getJSONObject(i);
                         String title=obj.getString("source");
                         txts.add(title);
-
                     }
                     sendMessage(UPDATE);
                 }catch (Exception e){
@@ -147,7 +146,7 @@ public class JourneyActivity extends AppCompatActivity {
             ImageLoader.getInstance().init(config);*/
 
             if (convertView == null) {
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.item_grid, parent, false);
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.item_grid2, parent, false);
                 viewHolder = new GridAdapter.ViewHolder();
                 try{
                     viewHolder.itemImg = (ImageView) convertView.findViewById(R.id.iv_head);

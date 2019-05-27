@@ -101,11 +101,11 @@ public class MyRecommendCardRecyclerViewAdapter extends RecyclerView.Adapter<MyR
         }
     }
     public void init(){
-        map.add(R.drawable.x1);
-        map.add(R.drawable.x2);
         map.add(R.drawable.x4);
         map.add(R.drawable.x5);
         map.add(R.drawable.x6);
+        map.add(R.drawable.x1);
+        map.add(R.drawable.x2);
         map.add(R.drawable.x7);
         map2.add(R.drawable.p1);
         map2.add(R.drawable.p2);
