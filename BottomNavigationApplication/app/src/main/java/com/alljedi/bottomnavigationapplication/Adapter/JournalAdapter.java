@@ -13,19 +13,33 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a  and makes a call to the
  * TODO: Replace the implementation with code for your data type.
  */
 public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.VH>{
+    private OnItemClickListener mClickListener;
+
+    public interface OnItemClickListener {
+        public void onItemClick(View view, int postion);
+    }
+
     //② 创建ViewHolder
     private HashMap<String,Integer> map=new HashMap<>();
-    public static class VH extends RecyclerView.ViewHolder{
+    public static class VH extends RecyclerView.ViewHolder implements View.OnClickListener{
         public final TextView title;
         public ImageView imageView;
-        public VH(View v) {
+        public OnItemClickListener mListener;
+        public VH(View v, OnItemClickListener listener) {
             super(v);
+            mListener = listener;
             title = (TextView) v.findViewById(R.id.title);
             imageView=(ImageView)v.findViewById(R.id.iv_head);
+            itemView.setOnClickListener(this);
+        }
+        @Override
+        public void onClick(View v) {
+            // getpostion()为Viewholder自带的一个方法，用来获取RecyclerView当前的位置，将此作为参数，传出去
+            mListener.onItemClick(v, getPosition());
         }
     }
 
@@ -39,12 +53,12 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.VH>{
     public void onBindViewHolder(VH holder, int position) {
         holder.title.setText(titlelist.get(position));
         //holder.imageView.setImageResource(map.get(titlelist.get(position)));
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //item 点击事件
-            }
-        });
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //item 点击事件
+//            }
+//        });
     }
 
     @Override
@@ -52,11 +66,17 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.VH>{
         return titlelist.size();
     }
 
+
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
         //LayoutInflater.from指定写法
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_journal, parent, false);
-        return new VH(v);
+        return new VH(v, mClickListener);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this. mClickListener= listener;
+
     }
     public void init(){
         map.clear();

@@ -56,6 +56,10 @@ public class JourneyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_jouney);
         final Context context= this.getApplicationContext();
         init();
+        Bundle bundle=getIntent().getExtras();
+        category=bundle.getString("category");
+        TextView titleText = this.findViewById(R.id.textView);
+        titleText.setText(category);
         gridView = this.findViewById(R.id.gridView);
         // Set the adapter
         getdata();
@@ -84,11 +88,13 @@ public class JourneyActivity extends AppCompatActivity {
                 try {
                     Response response = client.newCall(request).execute();//发送请求
                     String data = response.body().string();
+                    Log.e("JourneyActivity", data.toString());
                     JSONArray res=new JSONArray(data);
                     for(int i=0;i<res.length();i++){
                         JSONObject obj=res.getJSONObject(i);
                         String title=obj.getString("source");
                         txts.add(title);
+
                     }
                     sendMessage(UPDATE);
                 }catch (Exception e){
@@ -143,11 +149,14 @@ public class JourneyActivity extends AppCompatActivity {
             if (convertView == null) {
                 convertView = LayoutInflater.from(mContext).inflate(R.layout.item_grid, parent, false);
                 viewHolder = new GridAdapter.ViewHolder();
-                viewHolder.itemImg = (ImageView) convertView.findViewById(R.id.iv_head);
-                viewHolder.itemtxt = (TextView) convertView.findViewById(R.id.iv_tail);
-                //x.image().bind(viewHolder.itemImg,urls.get(position));
-                viewHolder.itemtxt.setText(txts.get(position));
-                viewHolder.itemImg.setImageResource(map.get(txts.get(position)));
+                try{
+                    viewHolder.itemImg = (ImageView) convertView.findViewById(R.id.iv_head);
+                    viewHolder.itemtxt = (TextView) convertView.findViewById(R.id.iv_tail);
+                    //x.image().bind(viewHolder.itemImg,urls.get(position));
+                    viewHolder.itemtxt.setText(txts.get(position));
+                    viewHolder.itemImg.setImageResource(map.get(txts.get(position)));
+                }catch (Exception e){
+                }
             } else {
                 viewHolder = (GridAdapter.ViewHolder) convertView.getTag();
             }
