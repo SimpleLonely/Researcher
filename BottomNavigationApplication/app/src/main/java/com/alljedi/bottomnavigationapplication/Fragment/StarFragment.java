@@ -119,6 +119,7 @@ public class StarFragment extends Fragment {
                 try {
                     Response response = client.newCall(request).execute();//发送请求
                     String data = response.body().string();
+
                     JSONArray res=new JSONArray(data);
                     for(int i=0;i<res.length();i++){
                         JSONObject obj=res.getJSONObject(i);
@@ -142,7 +143,6 @@ public class StarFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-
     }
 
     /**

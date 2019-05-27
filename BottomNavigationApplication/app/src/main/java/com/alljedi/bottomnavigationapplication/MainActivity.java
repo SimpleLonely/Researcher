@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener(){
-
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             //点击BottomNavigationView的Item项，切换ViewPager页面
