@@ -11,6 +11,8 @@ import com.alljedi.bottomnavigationapplication.R;
 import com.alljedi.bottomnavigationapplication.Fragment.RecommendCardFragment.OnListFragmentInteractionListener;
 import com.alljedi.bottomnavigationapplication.Content.RecommendCardContent.RecommendCardItem;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -22,10 +24,12 @@ public class MyRecommendCardRecyclerViewAdapter extends RecyclerView.Adapter<MyR
 
     private final List<RecommendCardItem> mValues;
     private final OnListFragmentInteractionListener mListener;
-
+    private ArrayList<Integer> map=new ArrayList<>();
+    private ArrayList<Integer> map2=new ArrayList<>();
     public MyRecommendCardRecyclerViewAdapter(List<RecommendCardItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
+        init();
     }
 
     @Override
@@ -39,10 +43,13 @@ public class MyRecommendCardRecyclerViewAdapter extends RecyclerView.Adapter<MyR
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         //holder.mOriginImage.setImageBitmap();
-        holder.mOriginText.setText(mValues.get(position).originText);
-        holder.mTitle.setText(mValues.get(position).title);
-        holder.mAuthor.setText(mValues.get(position).author);
-        //holder.mPhoto.setImageResource();
+        try{
+            holder.mOriginText.setText(mValues.get(position).originText);
+            holder.mTitle.setText(mValues.get(position).title);
+            holder.mAuthor.setText(mValues.get(position).author);
+            holder.mPhoto.setImageResource(map.get(position));
+            holder.mOriginImage.setImageResource(map2.get(position));
+        }catch (Exception e){}
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,5 +99,19 @@ public class MyRecommendCardRecyclerViewAdapter extends RecyclerView.Adapter<MyR
                     ", itemView=" + itemView +
                     '}';
         }
+    }
+    public void init(){
+        map.add(R.drawable.x1);
+        map.add(R.drawable.x2);
+        map.add(R.drawable.x4);
+        map.add(R.drawable.x5);
+        map.add(R.drawable.x6);
+        map.add(R.drawable.x7);
+        map2.add(R.drawable.p1);
+        map2.add(R.drawable.p2);
+        map2.add(R.drawable.p3);
+        map2.add(R.drawable.p4);
+        map2.add(R.drawable.p5);
+        map2.add(R.drawable.p6);
     }
 }
