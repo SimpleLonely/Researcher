@@ -1,5 +1,6 @@
 package com.alljedi.bottomnavigationapplication.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,11 +42,12 @@ public class RecommendCardFragment extends Fragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     int flag = 0;
-    String srcUrl = "";
+    String srcUrl = "http://47.103.9.254:3180/paper/getTopTen";
     private static final int UPDATE=1;
     private Handler mHandler;
 
     private ArrayList<RecommendCardItem> recommendCardItemArrayList = new ArrayList<>();
+    private RecyclerView recyclerView;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -62,10 +65,23 @@ public class RecommendCardFragment extends Fragment {
         return fragment;
     }
 
+    @SuppressLint("HandlerLeak")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case UPDATE:
+                        Log.e("URL", "Nodata");
+                        recyclerView.setAdapter(new MyRecommendCardRecyclerViewAdapter(recommendCardItemArrayList,mListener));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
@@ -79,13 +95,14 @@ public class RecommendCardFragment extends Fragment {
         // Set the adapter
         if (listView instanceof RecyclerView) {
             Context context = listView.getContext();
-            RecyclerView recyclerView = (RecyclerView) listView;
+            recyclerView = (RecyclerView) listView;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyRecommendCardRecyclerViewAdapter(RecommendCardContent.ITEMS, mListener));
+            flag = 0;
+            getData();
         }
         return view;
     }
@@ -97,20 +114,24 @@ public class RecommendCardFragment extends Fragment {
             public void run() {
                 recommendCardItemArrayList.clear();
                 OkHttpClient client = new OkHttpClient();
-                Request request = new Request.Builder().url(srcUrl+"?username=test").build();
+                Request request = new Request.Builder().url(srcUrl).build();
                 try {
                     Response response = client.newCall(request).execute();//发送请求
                     String data = response.body().string();
                     if (data == null){
-                        //TODO:
+                        Log.e("Nodata", "Nodata");
+                    }
+                    else {
+                        Log.e("HaveData", data.toString());
                     }
                     JSONArray res=new JSONArray(data);
                     for(int i=0;i<res.length();i++){
                         JSONObject obj=res.getJSONObject(i);
                         String pictureURL = "";
-                        recommendCardItemArrayList.add(new RecommendCardContent.RecommendCardItem(obj.getInt("id"), pictureURL, obj.getString("source"), obj.getString("title"), obj.getString("author"), obj.getString("summary")));
+                        recommendCardItemArrayList.add(new RecommendCardItem(obj.getInt("id"), pictureURL, obj.getString("source"), obj.getString("title"), obj.getString("author"), obj.getString("summary")));
                     }
-                    flag=1;sendMessage(UPDATE);
+                    flag=1;
+                    sendMessage(UPDATE);
                 }catch (Exception e){
                     e.printStackTrace();
                 }

@@ -43,7 +43,7 @@ public class StarFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
-    private String srcUrl = "http://47.103.9.254:3180/paper/getTopTen";
+    private String srcUrl = "http://47.103.9.254:3180/paperList/username/get";
     private static final int UPDATE=1;
     private ArrayList<StarItem> starItemArrayList = new ArrayList<>();
     private RecyclerView recyclerView ;
@@ -125,7 +125,8 @@ public class StarFragment extends Fragment {
                         JSONObject obj=res.getJSONObject(i);
                         starItemArrayList.add(new StarItem(obj.getString("id"),obj.getString("title"),obj.getString("author"),obj.getString("summary")));
                     }
-                    flag=1;sendMessage(UPDATE);
+                    flag=1;
+                    sendMessage(UPDATE);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
