@@ -21,6 +21,7 @@ import com.alljedi.bottomnavigationapplication.JourneyActivity;
 import com.alljedi.bottomnavigationapplication.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -39,6 +40,7 @@ public class JournalFragment extends Fragment {
     // TODO: Customize parameters
     private String categoriesurl="http://47.103.9.254:3180/periodical/getAll";
     private Handler mHandler;
+    private HashMap<String,Integer> map=new HashMap<>();
     ArrayList<String> catelist=new ArrayList<>();
     private int flag=0;
     private static final String TAG ="TEST";
@@ -88,7 +90,6 @@ public class JournalFragment extends Fragment {
             }
         };
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -105,33 +106,11 @@ public class JournalFragment extends Fragment {
         recyclerView.setItemAnimator( new DefaultItemAnimator());
         return view;
     }
-
-    // @Override
-    // public void onAttach(Context context) {
-    //     super.onAttach(context);
-    //     if (context instanceof OnListFragmentInteractionListener) {
-    //         mListener = (OnListFragmentInteractionListener) context;
-    //     } else {
-    //         throw new RuntimeException(context.toString()
-    //                 + " must implement OnListFragmentInteractionListener");
-    //     }
-    // }
-
     @Override
     public void onDetach() {
         super.onDetach();
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
     }

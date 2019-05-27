@@ -42,7 +42,7 @@ public class MyRecommendCardRecyclerViewAdapter extends RecyclerView.Adapter<MyR
         holder.mOriginText.setText(mValues.get(position).originText);
         holder.mTitle.setText(mValues.get(position).title);
         holder.mAuthor.setText(mValues.get(position).author);
-        //holder.mPhoto.setImageBitmap();
+        //holder.mPhoto.setImageResource();
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
