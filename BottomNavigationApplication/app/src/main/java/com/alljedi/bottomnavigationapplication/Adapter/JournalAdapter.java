@@ -34,7 +34,6 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.VH>{
             mListener = listener;
             title = (TextView) v.findViewById(R.id.title);
             imageView=(ImageView)v.findViewById(R.id.image);
-            imageView=(ImageView)v.findViewById(R.id.iv_head);
             itemView.setOnClickListener(this);
         }
         @Override
@@ -60,13 +59,6 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.VH>{
         }catch (Exception e){
 
         }
-        //holder.imageView.setImageResource(map.get(titlelist.get(position)));
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //item 点击事件
-//            }
-//        });
     }
 
     @Override

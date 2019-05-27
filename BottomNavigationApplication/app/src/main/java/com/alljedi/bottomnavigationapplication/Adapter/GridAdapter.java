@@ -113,6 +113,6 @@ public class GridAdapter extends BaseAdapter {
         map.put("计算机工程",R.drawable.p19);
         map.put("计算机应用",R.drawable.p20);
         map.put("软件学报",R.drawable.p21);
-        map.put("arXiv",R.drawable.p22);
+        map.put("arXiv",R.drawable.ar);
     }
 }
