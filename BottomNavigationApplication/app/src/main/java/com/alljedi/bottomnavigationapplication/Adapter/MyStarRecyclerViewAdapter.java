@@ -25,6 +25,7 @@ public class MyStarRecyclerViewAdapter extends RecyclerView.Adapter<MyStarRecycl
 
     public MyStarRecyclerViewAdapter(List<StarItem> items,
                                      OnListFragmentInteractionListener listener) {
+        mValues.clear();
         mValues.addAll(items);
         mListener = listener;
     }

@@ -19,6 +19,7 @@
         android:layout_below="@id/iv_head"
         android:textAppearance="?attr/textAppearanceListItem"
         android:ellipsize="end"
+        android:minLines="2"
         android:maxLines="2"/>
 
     <com.beardedhen.androidbootstrap.BootstrapButton
