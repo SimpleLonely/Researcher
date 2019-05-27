@@ -39,6 +39,7 @@ import okhttp3.Response;
 public class TextFragment extends Fragment {
     private RecyclerView recyclerView;
     private String srcurl="http://47.103.9.254:3180/paper/getAll";
+    ArrayList<Integer> idList = new ArrayList<>();
     ArrayList<String> titlelist=new ArrayList<>();
     ArrayList<String> summarylist=new ArrayList<>();
     ArrayList<String> pubtimelist=new ArrayList<>();
@@ -63,6 +64,7 @@ public class TextFragment extends Fragment {
                             @Override
                             public void onItemClick(View view, int postion) {
                                 Bundle bundle = new Bundle();
+                                bundle.putInt("id",idList.get(postion));
                                 bundle.putString("title", titlelist.get(postion));
                                 bundle.putString("summary",summarylist.get(postion));
                                 bundle.putString("author", authorlist.get(postion));
@@ -122,11 +124,13 @@ public class TextFragment extends Fragment {
                     JSONArray res=new JSONArray(data);
                     for(int i=0;i<res.length();i++){
                         JSONObject obj=res.getJSONObject(i);
+                        Integer id = obj.getInt("id");
                         String title=obj.getString("title");
                         String summary=obj.getString("summary");
                         String pubTime=obj.getString("pubTime");
                         String author=obj.getString("author");
                         String source=obj.getString("source");
+                        idList.add(id);
                         titlelist.add(title);
                         summarylist.add(summary);
                         pubtimelist.add(pubTime);
