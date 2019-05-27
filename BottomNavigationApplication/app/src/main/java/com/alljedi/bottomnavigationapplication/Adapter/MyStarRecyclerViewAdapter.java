@@ -28,6 +28,9 @@ public class MyStarRecyclerViewAdapter extends RecyclerView.Adapter<MyStarRecycl
         mValues.addAll(items);
         mListener = listener;
     }
+    public MyStarRecyclerViewAdapter(){
+        mListener=null;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

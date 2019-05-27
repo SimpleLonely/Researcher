@@ -1,5 +1,6 @@
 package com.alljedi.bottomnavigationapplication.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -48,6 +49,7 @@ public class StarFragment extends Fragment {
     private RecyclerView recyclerView ;
     int flag = 0;
     private Handler mHandler;
+    private MyStarRecyclerViewAdapter adapter= new MyStarRecyclerViewAdapter();
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -65,6 +67,7 @@ public class StarFragment extends Fragment {
         return fragment;
     }
 
+    @SuppressLint("HandlerLeak")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +77,8 @@ public class StarFragment extends Fragment {
             public void handleMessage(Message msg) {
                 switch (msg.what) {
                     case UPDATE:
-                        recyclerView.setAdapter(new MyStarRecyclerViewAdapter(starItemArrayList,mListener));
+                        adapter=new MyStarRecyclerViewAdapter(starItemArrayList,mListener);
+                        recyclerView.setAdapter(adapter);
                         break;
                     default:
                         break;
@@ -115,9 +119,6 @@ public class StarFragment extends Fragment {
                 try {
                     Response response = client.newCall(request).execute();//发送请求
                     String data = response.body().string();
-                    if (data == null){
-                        //TODO:
-                    }
                     JSONArray res=new JSONArray(data);
                     for(int i=0;i<res.length();i++){
                         JSONObject obj=res.getJSONObject(i);
@@ -141,6 +142,7 @@ public class StarFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+
     }
 
     /**

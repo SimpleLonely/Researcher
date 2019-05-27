@@ -1,5 +1,6 @@
 package com.alljedi.bottomnavigationapplication.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,12 +18,14 @@ import com.alljedi.bottomnavigationapplication.Adapter.NormalAdapter;
 import com.alljedi.bottomnavigationapplication.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MyFragment extends Fragment {
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
+    private HashMap<String,Integer> map=new HashMap<>();
     public ArrayList<String> urls=new ArrayList<String>();
     public  ArrayList<String> txts=new ArrayList<String>();
     private GridView gridView;
@@ -44,6 +47,7 @@ public class MyFragment extends Fragment {
         return fragment;
     }
 
+    @SuppressLint("HandlerLeak")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,5 +132,30 @@ public class MyFragment extends Fragment {
             ImageView itemImg;
             TextView itemtxt;
         }
+
+    }
+    public void init(){
+        map.clear();
+        map.put("世界有色金属",R.drawable.p1);
+        map.put("中国医学装备",R.drawable.p2);
+        map.put("中国心理卫生杂志",R.drawable.p3);
+        map.put("中国机械工程",R.drawable.p4);
+        map.put("中国现代应用药学",R.drawable.p5);
+        map.put("信息技术",R.drawable.p6);
+        map.put("南水北调与水利科技",R.drawable.p7);
+        map.put("四川师范大学电子出版社",R.drawable.p8);
+        map.put("山东工业技术",R.drawable.p9);
+        map.put("指挥信息系统与技术",R.drawable.p10);
+        map.put("新媒体研究",R.drawable.p11);
+        map.put("海南大学学报",R.drawable.p12);
+        map.put("激光与光电子学进展",R.drawable.p13);
+        map.put("现代工业经济和信息化",R.drawable.p14);
+        map.put("电子技术与软件工程",R.drawable.p15);
+        map.put("经营与管理",R.drawable.p16);
+        map.put("绿色环保建材",R.drawable.p17);
+        map.put("计算机产品与流通",R.drawable.p18);
+        map.put("计算机工程",R.drawable.p19);
+        map.put("计算机应用",R.drawable.p20);
+        map.put("软件学报",R.drawable.p21);
     }
 }

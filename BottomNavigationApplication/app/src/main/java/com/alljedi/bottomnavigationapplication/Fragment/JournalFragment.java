@@ -1,5 +1,6 @@
 package com.alljedi.bottomnavigationapplication.Fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -53,6 +54,7 @@ public class JournalFragment extends Fragment {
         return fragment;
     }
 
+    @SuppressLint("HandlerLeak")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
