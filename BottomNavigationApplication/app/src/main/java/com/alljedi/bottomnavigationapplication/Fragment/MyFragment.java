@@ -2,6 +2,8 @@ package com.alljedi.bottomnavigationapplication.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alljedi.bottomnavigationapplication.Adapter.NormalAdapter;
 import com.alljedi.bottomnavigationapplication.R;
 
 import java.util.ArrayList;
@@ -23,16 +26,15 @@ public class MyFragment extends Fragment {
     public ArrayList<String> urls=new ArrayList<String>();
     public  ArrayList<String> txts=new ArrayList<String>();
     private GridView gridView;
-
+    private static final String TAG ="TEST";
+    private static final int UPDATE=1;
+    private Handler mHandler;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
     public MyFragment() {
-        urls.add("http://47.100.107.158:8080/static/marker_radar_g.png");
-        urls.add("http://47.100.107.158:8080/static/marker_radar_r.png");
-        txts.add("marker_radar_g.png");
-        txts.add("marker_radar_r.png");
+
     }
 
     // TODO: Customize parameter initialization
@@ -45,6 +47,19 @@ public class MyFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final Context context=getContext();
+        mHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case UPDATE:
+                        gridView.setAdapter(new GridAdapter(context));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
     }
 
     @Override
@@ -52,9 +67,7 @@ public class MyFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my, container, false);
         gridView=view.findViewById(R.id.gridView);
-        gridView.setAdapter(new GridAdapter(this.getContext()));
         // Set the adapter
-
         return view;
     }
 

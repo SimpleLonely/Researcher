@@ -30,23 +30,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/list"
-        android:layout_width="364dp"
-        android:layout_height="613dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="18dp"
-        app:layoutManager="LinearLayoutManager"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider2"
-        tools:context=".Fragment.StarFragment"
-        tools:listitem="@layout/fragment_star">
+        app:layout_constraintTop_toBottomOf="@+id/divider2">
 
-
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="364dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="18dp"
+            app:layoutManager="LinearLayoutManager"
+            tools:context=".Fragment.StarFragment"
+            tools:listitem="@layout/fragment_star"></android.support.v7.widget.RecyclerView>
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
 
 

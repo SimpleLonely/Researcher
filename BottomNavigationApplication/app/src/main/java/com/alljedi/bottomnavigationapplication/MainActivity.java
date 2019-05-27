@@ -24,13 +24,13 @@ import java.lang.reflect.Field;
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
     private CustomViewPager viewPager;
 
-    private TextFragment textFragment = new TextFragment();
-    private ProfileFragment profileFragment = new ProfileFragment();
-    private FavouriteFragment favouriteFragment = new FavouriteFragment();
-    private StarFragment starFragment = new StarFragment();
-    private FollowFragment followFragment = new FollowFragment();
-    private JournalFragment journalFragment = new JournalFragment();
-    private RecommendCardFragment recommendCardFragment = new RecommendCardFragment();
+    private TextFragment textFragment;
+    private ProfileFragment profileFragment;
+    private FavouriteFragment favouriteFragment;
+    private StarFragment starFragment;
+    private FollowFragment followFragment;
+    private JournalFragment journalFragment;
+    private RecommendCardFragment recommendCardFragment;
     BottomNavigationView navView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -60,14 +60,19 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
+                        textFragment = new TextFragment();
                         return textFragment;
                     case 1:
+                        profileFragment = new ProfileFragment();
                         return profileFragment;
                     case 2:
+                        recommendCardFragment = new RecommendCardFragment();
                         return recommendCardFragment;
                     case 3:
+                        starFragment = new StarFragment();
                         return starFragment;
                     case 4:
+                        followFragment = new FollowFragment();
                         return followFragment;
                 }
                 return null;

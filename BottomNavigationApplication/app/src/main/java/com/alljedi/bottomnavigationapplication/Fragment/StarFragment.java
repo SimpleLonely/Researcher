@@ -76,8 +76,7 @@ public class StarFragment extends Fragment {
             public void handleMessage(Message msg) {
                 switch (msg.what) {
                     case UPDATE:
-                        Log.e(TAG,"TEST"+starItemArrayList.toString());
-                        recyclerView.setAdapter(new MyStarRecyclerViewAdapter((List<StarItem>)starItemArrayList,mListener));
+                        recyclerView.setAdapter(new MyStarRecyclerViewAdapter(starItemArrayList,mListener));
                         break;
                     default:
                         break;
@@ -104,7 +103,6 @@ public class StarFragment extends Fragment {
             }
             flag = 0;
             getData();
-            recyclerView.setAdapter(new MyStarRecyclerViewAdapter(starItemArrayList, mListener));
         }
         return view;
     }
@@ -113,6 +111,7 @@ public class StarFragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                starItemArrayList.clear();
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder().url(srcUrl+"?username=test").build();
                 try {
@@ -126,20 +125,12 @@ public class StarFragment extends Fragment {
                         JSONObject obj=res.getJSONObject(i);
                         starItemArrayList.add(new StarItem(obj.getString("id"),obj.getString("title"),obj.getString("author"),obj.getString("summary")));
                     }
-                    flag=1;
+                    flag=1;sendMessage(UPDATE);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
             }
         }).start();
-        while(flag==0) {
-            try{
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        if(flag==1) sendMessage(UPDATE);
     }
     public void sendMessage(int id){
         if (mHandler != null) {

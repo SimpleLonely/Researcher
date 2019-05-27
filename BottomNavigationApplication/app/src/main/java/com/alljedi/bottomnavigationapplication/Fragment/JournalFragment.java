@@ -125,6 +125,7 @@ public class JournalFragment extends Fragment {
         }
     }
     public void getdata(){
+        catelist.clear();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -138,18 +139,11 @@ public class JournalFragment extends Fragment {
                         catelist.add(temp[i].substring(1,temp[i].length()-1));
                     }
                     flag=1;
+                    sendMessage(UPDATE);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
             }
         }).start();
-        while(flag==0) {
-            try{
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        if(flag==1) sendMessage(UPDATE);
     }
 }

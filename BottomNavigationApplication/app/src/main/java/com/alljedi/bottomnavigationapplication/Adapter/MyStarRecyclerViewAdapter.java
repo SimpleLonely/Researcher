@@ -11,6 +11,7 @@ import com.alljedi.bottomnavigationapplication.R;
 import com.alljedi.bottomnavigationapplication.Fragment.StarFragment.OnListFragmentInteractionListener;
 import com.alljedi.bottomnavigationapplication.dummy.StarItemContent.StarItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,12 +21,12 @@ import java.util.List;
  */
 public class MyStarRecyclerViewAdapter extends RecyclerView.Adapter<MyStarRecyclerViewAdapter.ViewHolder> {
 
-    private final List<StarItem> mValues;
+    private final ArrayList<StarItem> mValues=new ArrayList<StarItem>();
     private final OnListFragmentInteractionListener mListener;
 
     public MyStarRecyclerViewAdapter(List<StarItem> items,
                                      OnListFragmentInteractionListener listener) {
-        mValues = items;
+        mValues.addAll(items);
         mListener = listener;
     }
 

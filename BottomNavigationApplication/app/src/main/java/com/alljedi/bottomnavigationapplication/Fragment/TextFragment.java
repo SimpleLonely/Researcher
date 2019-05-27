@@ -111,18 +111,11 @@ public class TextFragment extends Fragment {
                         sourcelist.add(source);
                     }
                     flag=1;
+                    sendMessage(UPDATE);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
             }
         }).start();
-        while(flag==0) {
-            try{
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        if(flag==1) sendMessage(UPDATE);
     }
 }
