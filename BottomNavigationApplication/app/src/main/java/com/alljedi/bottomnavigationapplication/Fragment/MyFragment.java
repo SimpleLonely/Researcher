@@ -17,16 +17,23 @@ import android.widget.TextView;
 import com.alljedi.bottomnavigationapplication.Adapter.NormalAdapter;
 import com.alljedi.bottomnavigationapplication.R;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class MyFragment extends Fragment {
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
+    private String srcurl="http://47.103.9.254:3180/periodical/username/get";
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private HashMap<String,Integer> map=new HashMap<>();
-    public ArrayList<String> urls=new ArrayList<String>();
     public  ArrayList<String> txts=new ArrayList<String>();
     private GridView gridView;
     private static final String TAG ="TEST";
@@ -52,6 +59,7 @@ public class MyFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Context context=getContext();
+        init();
         mHandler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
@@ -72,9 +80,37 @@ public class MyFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my, container, false);
         gridView=view.findViewById(R.id.gridView);
         // Set the adapter
+        getdata();
         return view;
     }
-
+    public void getdata(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder().url(srcurl+"?username=test").build();
+                try {
+                    Response response = client.newCall(request).execute();//发送请求
+                    String data = response.body().string();
+                    JSONArray res=new JSONArray(data);
+                    for(int i=0;i<res.length();i++){
+                        JSONObject obj=res.getJSONObject(i);
+                        String title=obj.getString("source");
+                        txts.add(title);
+                    }
+                    sendMessage(UPDATE);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+    public void sendMessage(int id){
+        if (mHandler != null) {
+            Message message = Message.obtain(mHandler, id);
+            mHandler.sendMessage(message);
+        }
+    }
     public class GridAdapter extends BaseAdapter {
 
         private Context mContext;
@@ -87,7 +123,7 @@ public class MyFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return 2;
+            return txts.size();
         }
 
         @Override
@@ -119,6 +155,7 @@ public class MyFragment extends Fragment {
                 viewHolder.itemtxt = (TextView) convertView.findViewById(R.id.iv_tail);
                 //x.image().bind(viewHolder.itemImg,urls.get(position));
                 viewHolder.itemtxt.setText(txts.get(position));
+                viewHolder.itemImg.setImageResource(map.get(txts.get(position)));
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
@@ -131,6 +168,7 @@ public class MyFragment extends Fragment {
         class ViewHolder {
             ImageView itemImg;
             TextView itemtxt;
+            
         }
 
     }
