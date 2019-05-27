@@ -43,7 +43,7 @@ public class StarFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
-    private String srcUrl = "http://47.103.9.254:3180/paperList/username/get";
+    private String srcUrl = "http://47.103.9.254:3180/paperList/getTargetPaperList";
     private static final int UPDATE=1;
     private ArrayList<StarItem> starItemArrayList = new ArrayList<>();
     private RecyclerView recyclerView ;
@@ -118,7 +118,10 @@ public class StarFragment extends Fragment {
                     Response response = client.newCall(request).execute();//发送请求
                     String data = response.body().string();
                     if (data == null){
-                        //TODO:
+                        Log.e("Star", "Nodata");
+                    }
+                    else{
+                        Log.e("Star", data.toString());
                     }
                     JSONArray res=new JSONArray(data);
                     for(int i=0;i<res.length();i++){

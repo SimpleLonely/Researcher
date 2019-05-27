@@ -1,6 +1,7 @@
 package com.alljedi.bottomnavigationapplication.Fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,6 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alljedi.bottomnavigationapplication.Adapter.JournalAdapter;
+import com.alljedi.bottomnavigationapplication.Adapter.NormalAdapter;
+import com.alljedi.bottomnavigationapplication.DetailActivity;
+import com.alljedi.bottomnavigationapplication.JourneyActivity;
 import com.alljedi.bottomnavigationapplication.R;
 
 import java.util.ArrayList;
@@ -41,6 +45,7 @@ public class JournalFragment extends Fragment {
     private int flag=0;
     private static final String TAG ="TEST";
     private static final int UPDATE=1;
+    private JournalAdapter adapter;
     RecyclerView recyclerView;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -65,7 +70,19 @@ public class JournalFragment extends Fragment {
             public void handleMessage(Message msg) {
                 switch (msg.what) {
                     case UPDATE:
-                        recyclerView.setAdapter(new JournalAdapter(catelist));
+                        adapter = new JournalAdapter(catelist);
+                        recyclerView.setAdapter(adapter);
+                        adapter.setOnItemClickListener(new JournalAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int postion) {
+                                Bundle bundle = new Bundle();
+                                bundle.putString("category", catelist.get(postion));
+                                Intent intent = new Intent();
+                                intent.putExtras(bundle);
+                                intent.setClass(JournalFragment.super.getActivity(), JourneyActivity.class);
+                                startActivity(intent);
+                            }
+                        });
                         break;
                     default:
                         break;

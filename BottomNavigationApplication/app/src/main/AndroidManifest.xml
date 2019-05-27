@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/newlauncher"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".JourneyActivity"
+            ></activity>
+        <activity android:name=".DetailActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
