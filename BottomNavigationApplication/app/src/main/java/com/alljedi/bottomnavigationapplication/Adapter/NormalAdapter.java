@@ -90,6 +90,5 @@ public class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.VH> {
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this. mClickListener= listener;
-
     }
 }
